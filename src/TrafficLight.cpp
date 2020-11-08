@@ -49,8 +49,7 @@ TrafficLightPhase TrafficLight::getCurrentPhase()
 
 void TrafficLight::simulate()
 {
-    std::thread simulation(&TrafficLight::cycleThroughPhases, this);
-    threads.push_back(std::move(simulation));
+    threads.emplace_back(std::thread(&TrafficLight::cycleThroughPhases, this));
 }
 
 // virtual function which is executed in a thread
